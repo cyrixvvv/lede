@@ -63,7 +63,7 @@ jobs:
           git config --global user.name "Cyrix"
           git remote add openwrt https://github.com/coolsnowwolf/lede
           git pull openwrt master --allow-unrelated-histories
-          git push openwrt master
+          # git push openwrt master
           git remote -v
           
       - name: 构建自定义文件结构
