@@ -318,7 +318,10 @@ jobs:
 
           # 
           # ========================固件定制部分结束========================
-          # 
+          # 进行个性化修改
+          # DNSPOD改为支持ipv6
+          sed -i "s/record_type='A'/record_type='AAAA'/g" package/lean/luci-app-dnspod/files/dnspod.sh
+          sed -i 's/record_type=A/record_type=AAAA/g' package/lean/luci-app-dnspod/files/dnspod.sh
 
           sed -i 's/^[ \t]*//g' ./.config
           make defconfig
