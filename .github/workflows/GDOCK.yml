@@ -74,10 +74,10 @@ jobs:
           
       - name: 构建自定义文件结构
         run: |
-          cd package
-          mkdir openwrt-packages
-          cd openwrt-packages
-          git clone https://github.com/openwrt-develop/luci-theme-atmaterial.git
+          # cd package
+          # mkdir openwrt-packages
+          # cd openwrt-packages
+          # git clone https://github.com/openwrt-develop/luci-theme-atmaterial.git
           # git clone https://github.com/KFERMercer/luci-app-serverchan
           # git clone https://github.com/rosywrt/luci-theme-rosy
           # git clone https://github.com/apollo-ng/luci-theme-darkmatter
@@ -336,6 +336,7 @@ jobs:
         run: |
           # echo -e "$(nproc) thread build."
           # make -j$(nproc) V=s
+          
           make -j1 V=s
 
       - name : 编译完成上传固件
