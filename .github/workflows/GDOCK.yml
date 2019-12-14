@@ -70,7 +70,7 @@ jobs:
           
       - name: 克隆源码
         run: |
-          git clone https://github.com/coolsnowwolf/lede lede
+          git clone https://github.com/coolsnowwolf/lede
           
       - name: 构建自定义文件结构
         run: |
@@ -88,12 +88,12 @@ jobs:
 
       - name: 构建编译扩展环境
         run: |
-          cd lede && ./scripts/feeds update -a
-          cd lede && ./scripts/feeds install -a
+          cd lede
+          ./scripts/feeds update -a
+          ./scripts/feeds install -a
 
       - name: 导入自定义配置
         run: |
-          cd lede
           rm -f ./.config*
           touch ./.config
 
@@ -320,17 +320,16 @@ jobs:
           # 
           # ========================固件定制部分结束========================
           # 进行个性化修改
+          sed -i 's/^[ \t]*//g' ./.config
+          make defconfig
+          
           # DNSPOD改为支持ipv6
-          cd lede
           sed -i "s/record_type='A'/record_type='AAAA'/g" package/lean/luci-app-dnspod/files/dnspod.sh
           sed -i 's/record_type=A/record_type=AAAA/g' package/lean/luci-app-dnspod/files/dnspod.sh
 
-          sed -i 's/^[ \t]*//g' ./.config
-          make defconfig
-
       - name: 下载编译所需源码
         run: |
-          cd lede && make download -j8
+          make download -j8
           find dl -size -1024c -exec ls -l {} \;
           find dl -size -1024c -exec rm -f {} \;
 
@@ -338,7 +337,6 @@ jobs:
         run: |
           # echo -e "$(nproc) thread build."
           # make -j$(nproc) V=s
-          cd lede
           make -j1 V=s
 
       - name : 编译完成上传固件
