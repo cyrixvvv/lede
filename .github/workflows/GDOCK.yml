@@ -58,20 +58,20 @@ jobs:
           sudo -E apt-get -y autoremove --purge
           sudo -E apt-get clean
           
-      - name: 同步最新的源码
+      - name: 同步最新的源码(停用）
         run: |
-          git config --global user.email "wuyu@live.com"
-          git config --global user.name "Cyrix"
-          git remote add openwrt https://github.com/coolsnowwolf/lede
-          git pull openwrt master --allow-unrelated-histories
-          git remote -v
-          git fetch openwrt
-          git merge openwrt/master
-          git pull --rebase origin master
+          # git config --global user.email "wuyu@live.com"
+          # git config --global user.name "Cyrix"
+          # git remote add openwrt https://github.com/coolsnowwolf/lede
+          # git pull openwrt master --allow-unrelated-histories
+          # git remote -v
+          # git fetch openwrt
+          # git merge openwrt/master
+          # git pull --rebase origin master
           
       - name: 克隆源码
         run: |
-          # git clone https://github.com/coolsnowwolf/lede
+          git clone https://github.com/coolsnowwolf/lede lede
           
       - name: 构建自定义文件结构
         run: |
@@ -87,14 +87,15 @@ jobs:
           # git clone https://github.com/giaulo/luci-app-filebrowser.git
           # git clone https://github.com/honwen/luci-app-aliddns.git
 
-      - name: 构建编译扩展环境
-        run: |
-          # cd lede
-          ./scripts/feeds update -a
-          ./scripts/feeds install -a
+      - name: Update feeds
+        run: cd lede && ./scripts/feeds update -a
+
+      - name: Install feeds
+        run: cd lede && ./scripts/feeds install -a
 
       - name: 导入自定义配置
         run: |
+          cd lede
           rm -f ./.config*
           touch ./.config
 
@@ -330,7 +331,7 @@ jobs:
 
       - name: 下载编译所需源码
         run: |
-          make download -j8
+          cd lede && make download -j8
           find dl -size -1024c -exec ls -l {} \;
           find dl -size -1024c -exec rm -f {} \;
 
@@ -338,6 +339,7 @@ jobs:
         run: |
           # echo -e "$(nproc) thread build."
           # make -j$(nproc) V=s
+          cd lede
           make -j1 V=s
 
       - name : 编译完成上传固件
