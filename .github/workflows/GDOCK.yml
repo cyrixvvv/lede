@@ -337,13 +337,14 @@ jobs:
 
       - name: 进行固件编译
         run: |
-          # echo -e "$(nproc) thread build."
-          # make -j$(nproc) V=s
           cd lede
-          make -j1 V=s
+          echo -e "$(nproc) thread build."
+          make -j$(nproc) V=s
+          # make -j1 V=s
 
       - name : 编译完成上传固件
         uses: actions/upload-artifact@master
         with:
           name: OpenWrt GDOCK
-          path: bin/targets
+          path: ./lede/bin
+          # path: bin/targets
