@@ -38,7 +38,8 @@ jobs:
           sudo rm -rf \
             /usr/share/dotnet \
             /etc/mysql \
-            /etc/php
+            /etc/php \
+            /etc/apt/sources.list.d
           sudo -E apt-get -y purge \
             azure-cli \
             ghc* \
@@ -57,20 +58,20 @@ jobs:
           sudo -E apt-get -y autoremove --purge
           sudo -E apt-get clean
           
-      - name: 同步最新的源码（停用）
+      - name: 同步最新的源码
         run: |
-          # git config --global user.email "wuyu@live.com"
-          # git config --global user.name "Cyrix"
-          # git remote add openwrt https://github.com/coolsnowwolf/lede
-          # git pull openwrt master --allow-unrelated-histories
-          # git remote -v
-          # git fetch openwrt
-          # git merge openwrt/master
-          # git pull --rebase origin master
+          git config --global user.email "wuyu@live.com"
+          git config --global user.name "Cyrix"
+          git remote add openwrt https://github.com/coolsnowwolf/lede
+          git pull openwrt master --allow-unrelated-histories
+          git remote -v
+          git fetch openwrt
+          git merge openwrt/master
+          git pull --rebase origin master
           
       - name: 克隆源码
         run: |
-          git clone https://github.com/coolsnowwolf/lede
+          # git clone https://github.com/coolsnowwolf/lede
           
       - name: 构建自定义文件结构
         run: |
@@ -88,7 +89,7 @@ jobs:
 
       - name: 构建编译扩展环境
         run: |
-          cd lede
+          # cd lede
           ./scripts/feeds update -a
           ./scripts/feeds install -a
 
@@ -324,8 +325,8 @@ jobs:
           make defconfig
           
           # DNSPOD改为支持ipv6
-          sed -i "s/record_type='A'/record_type='AAAA'/g" package/lean/luci-app-dnspod/files/dnspod.sh
-          sed -i 's/record_type=A/record_type=AAAA/g' package/lean/luci-app-dnspod/files/dnspod.sh
+          sed -i "s/record_type='A'/record_type='AAAA'/g" ./package/lean/luci-app-dnspod/files/dnspod.sh
+          sed -i 's/record_type=A/record_type=AAAA/g' ./package/lean/luci-app-dnspod/files/dnspod.sh
 
       - name: 下载编译所需源码
         run: |
