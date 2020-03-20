@@ -279,9 +279,8 @@ jobs:
           CONFIG_PACKAGE_luci-app-adbyby-plus=y
           CONFIG_PACKAGE_luci-app-autoreboot=y
           # CONFIG_PACKAGE_luci-app-cifsd=y
-          # CONFIG_PACKAGE_luci-app-ddns is not set
+          CONFIG_PACKAGE_luci-app-ddns
           # CONFIG_PACKAGE_luci-app-dnsforwarder=y
-          CONFIG_PACKAGE_luci-app-dnspod=y
           CONFIG_PACKAGE_luci-app-filetransfer=y
           CONFIG_PACKAGE_luci-app-firewall=y
           CONFIG_PACKAGE_luci-app-flowoffload=y
@@ -327,8 +326,8 @@ jobs:
           make defconfig
           
           # DNSPOD改为支持ipv6
-          sed -i "s/record_type='A'/record_type='AAAA'/g" ./package/lean/luci-app-dnspod/files/dnspod.sh
-          sed -i 's/record_type=A/record_type=AAAA/g' ./package/lean/luci-app-dnspod/files/dnspod.sh
+          # sed -i "s/record_type='A'/record_type='AAAA'/g" ./package/lean/luci-app-dnspod/files/dnspod.sh
+          # sed -i 's/record_type=A/record_type=AAAA/g' ./package/lean/luci-app-dnspod/files/dnspod.sh
 
       - name: 下载编译所需源码
         run: |
