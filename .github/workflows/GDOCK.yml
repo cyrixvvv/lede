@@ -237,9 +237,8 @@ jobs:
           # 常用LuCI插件选择:
           cat >> .config <<EOF
           # CONFIG_PACKAGE_luci-app-accesscontrol is not set
-          CONFIG_PACKAGE_luci-app-nft-qos=y
+          # CONFIG_PACKAGE_luci-app-nft-qos=y
           CONFIG_PACKAGE_luci-app-arpbind=y
-          CONFIG_PACKAGE_luci-app-smartdns=y
           # CONFIG_PACKAGE_luci-app-serverchan=y
           # CONFIG_PACKAGE_luci-app-usb-printer=y
           CONFIG_PACKAGE_luci-app-sqm=y
@@ -258,12 +257,12 @@ jobs:
           # CONFIG_PACKAGE_luci-app-minidlna=y
           # CONFIG_PACKAGE_luci-app-smartinfo=y
           CONFIG_PACKAGE_luci-app-ssr-plus=y
-          CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Kcptun=y
-          CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Shadowsocks=y
-          CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_ShadowsocksR_Server=y
-          CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_ShadowsocksR_Socks=y
-          CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_V2ray=y
-          CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Trojan=y
+          # CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Kcptun=y
+          # CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Shadowsocks=y
+          # CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_ShadowsocksR_Server=y
+          # CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_ShadowsocksR_Socks=y
+          # CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_V2ray=y
+          # CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Trojan=y
           # CONFIG_PACKAGE_luci-app-syncdial=y
           # CONFIG_PACKAGE_luci-app-ttyd=y
           # CONFIG_PACKAGE_luci-app-lxc=y
@@ -279,7 +278,7 @@ jobs:
           CONFIG_PACKAGE_luci-app-adbyby-plus=y
           CONFIG_PACKAGE_luci-app-autoreboot=y
           # CONFIG_PACKAGE_luci-app-cifsd=y
-          CONFIG_PACKAGE_luci-app-ddns
+          CONFIG_PACKAGE_luci-app-ddns=y
           # CONFIG_PACKAGE_luci-app-dnsforwarder=y
           CONFIG_PACKAGE_luci-app-filetransfer=y
           CONFIG_PACKAGE_luci-app-firewall=y
@@ -339,8 +338,8 @@ jobs:
         run: |
           cd lede
           echo -e "$(nproc) thread build."
-          make -j$(nproc) V=s
-          # make -j1 V=s
+          # make -j$(nproc) V=s
+          make -j1 V=s
 
       - name : 编译完成上传固件
         uses: actions/upload-artifact@master
