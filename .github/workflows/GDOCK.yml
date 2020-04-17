@@ -22,6 +22,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    if: github.event.repository.owner.id == github.event.sender.id
 
     steps:
       - name: 校验本地文件
@@ -84,7 +85,10 @@ jobs:
           # git clone https://github.com/honwen/luci-app-aliddns.git
 
       - name: Update feeds
-        run: cd lede && ./scripts/feeds update -a
+        run: |
+          cd lede
+          sed -i 's/\"#src-git\"/\"src-git\"/g' ./feeds.conf.default
+          ./scripts/feeds update -a
 
       - name: Install feeds
         run: cd lede && ./scripts/feeds install -a
