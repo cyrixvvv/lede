@@ -334,7 +334,7 @@ jobs:
           sed -i 's/^[ \t]*//g' ./.config
           make defconfig
           
-          # DNSPOD改为支持ipv6
+          # DNSPOD改为支持ipv6，改为DDNS实现
           # sed -i "s/record_type='A'/record_type='AAAA'/g" ./package/lean/luci-app-dnspod/files/dnspod.sh
           # sed -i 's/record_type=A/record_type=AAAA/g' ./package/lean/luci-app-dnspod/files/dnspod.sh
 
