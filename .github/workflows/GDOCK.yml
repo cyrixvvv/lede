@@ -16,8 +16,8 @@ on:
   watch:
     types: started
   push:
-    tags:
-      - '*'
+    branches:
+      - master
   release:
     types: [published]
 
