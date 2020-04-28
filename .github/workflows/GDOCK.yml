@@ -43,18 +43,6 @@ jobs:
           sudo -E apt-get -y install build-essential asciidoc binutils bzip2 gawk gettext git libncurses5-dev libz-dev patch python3 unzip zlib1g-dev lib32gcc1 libc6-dev-i386 subversion flex uglifyjs gcc-multilib g++-multilib p7zip p7zip-full msmtp libssl-dev texinfo libglib2.0-dev xmlto qemu-utils upx libelf-dev autoconf automake libtool autopoint device-tree-compiler antlr3 gperf
           sudo -E apt-get -y autoremove --purge
           sudo -E apt-get clean
-
-          sudo -E apt-get -y autoremove --purge
-          sudo -E apt-get clean
-          
-          # 利用挂载在 /mnt/ 的 14G 额外空间:
-          # sudo mkdir -p -m 777 /mnt/openwrt/bin /mnt/openwrt/build_dir/host /mnt/openwrt/build_dir/hostpkg /mnt/openwrt/dl /mnt/openwrt/feeds /mnt/openwrt/staging_dir
-          # ln -s /mnt/openwrt/bin ./bin
-          # mkdir -p ./build_dir/host && ln -s /mnt/openwrt/build_dir/host ./build_dir/host
-          # mkdir -p ./build_dir/host && ln -s /mnt/openwrt/build_dir/hostpkg ./build_dir/hostpkg
-          # ln -s /mnt/openwrt/dl ./dl
-          # ln -s /mnt/openwrt/feeds ./feeds
-          # ln -s /mnt/openwrt/staging_dir ./staging_dir
           df -h
           
       - name: 同步最新的源码(停用）
@@ -86,14 +74,12 @@ jobs:
           # git clone https://github.com/giaulo/luci-app-filebrowser.git
           # git clone https://github.com/honwen/luci-app-aliddns.git
 
-      - name: Update feeds
+      - name: Update feeds & Install feeds
         run: |
           cd lede
           sed -i 's/\"#src-git\"/\"src-git\"/g' ./feeds.conf.default
           ./scripts/feeds update -a
-
-      - name: Install feeds
-        run: cd lede && ./scripts/feeds install -a
+          ./scripts/feeds install -a
 
       - name: 导入自定义配置
         run: |
@@ -202,13 +188,35 @@ jobs:
           
           # 无线驱动
           cat >> .config <<EOF
+          CONFIG_DEFAULT_ath10k-firmware-qca4019-ct=y
+          CONFIG_DEFAULT_kmod-ath10k-ct=y
+          # CONFIG_PACKAGE_ath10k-firmware-qca4019 is not set
           CONFIG_PACKAGE_ipq-wifi-p2w_r619ac=y
-          CONFIG_PACKAGE_ath10k-firmware-qca4019=y
+          CONFIG_PACKAGE_ath10k-firmware-qca4019-ct=y
+          # CONFIG_PACKAGE_ath10k-firmware-qca4019-ct-htt is not set
+          # CONFIG_PACKAGE_ath10k-firmware-qca6174 is not set
+          # CONFIG_PACKAGE_ath10k-firmware-qca9887 is not set
+          # CONFIG_PACKAGE_ath10k-firmware-qca9887-ct is not set
+          # CONFIG_PACKAGE_ath10k-firmware-qca9887-ct-htt is not set
+          # CONFIG_PACKAGE_ath10k-firmware-qca9888 is not set
+          # CONFIG_PACKAGE_ath10k-firmware-qca9888-ct is not set
+          # CONFIG_PACKAGE_ath10k-firmware-qca9888-ct-htt is not set
+          # CONFIG_PACKAGE_ath10k-firmware-qca988x is not set
+          # CONFIG_PACKAGE_ath10k-firmware-qca988x-ct is not set
+          # CONFIG_PACKAGE_ath10k-firmware-qca988x-ct-htt is not set
+          # CONFIG_PACKAGE_ath10k-firmware-qca9984 is not set
+          # CONFIG_PACKAGE_ath10k-firmware-qca9984-ct is not set
+          # CONFIG_PACKAGE_ath10k-firmware-qca9984-ct-htt is not set
+          # CONFIG_PACKAGE_ath10k-firmware-qca99x0 is not set
+          # CONFIG_PACKAGE_ath10k-firmware-qca99x0-ct is not set
+          # CONFIG_PACKAGE_ath10k-firmware-qca99x0-ct-htt is not set
+          # CONFIG_PACKAGE_kmod-ath10k is not set
+          # CONFIG_PACKAGE_kmod-ath10k-ct-smallbuffers is not set
           CONFIG_PACKAGE_wireless-regdb=y
           CONFIG_PACKAGE_kmod-ath=y
           CONFIG_ATH_USER_REGD=y
           CONFIG_PACKAGE_ATH_DFS=y
-          CONFIG_PACKAGE_kmod-ath10k=y
+          CONFIG_PACKAGE_kmod-ath10k-ct=y
           CONFIG_ATH10K_LEDS=y
           CONFIG_ATH10K_THERMAL=y
           CONFIG_PACKAGE_kmod-cfg80211=y
