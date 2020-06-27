@@ -1603,11 +1603,11 @@ jobs:
           # CONFIG_BUSYBOX_DEFAULT_FEATURE_KMSG_SYSLOG is not set
           CONFIG_PACKAGE_ca-bundle=m
           CONFIG_PACKAGE_ca-certificates=y
-          # CONFIG_PACKAGE_dnsmasq is not set
-          # CONFIG_PACKAGE_dnsmasq-dhcpv6 is not set
+          CONFIG_PACKAGE_dnsmasq=y
+          CONFIG_PACKAGE_dnsmasq-dhcpv6=y
           CONFIG_PACKAGE_dnsmasq-full=y
           CONFIG_PACKAGE_dnsmasq_full_dhcp=y
-          # CONFIG_PACKAGE_dnsmasq_full_dhcpv6 is not set
+          CONFIG_PACKAGE_dnsmasq_full_dhcpv6=y
           # CONFIG_PACKAGE_dnsmasq_full_dnssec is not set
           # CONFIG_PACKAGE_dnsmasq_full_auth is not set
           CONFIG_PACKAGE_dnsmasq_full_ipset=y
@@ -4127,7 +4127,7 @@ jobs:
           CONFIG_PACKAGE_luci-app-arpbind=y
           # CONFIG_PACKAGE_luci-app-asterisk is not set
           # CONFIG_PACKAGE_luci-app-attendedsysupgrade is not set
-          CONFIG_PACKAGE_luci-app-autoreboot=y
+          CONFIG_PACKAGE_luci-app-autoreboot=m
           # CONFIG_PACKAGE_luci-app-baidupcs-web is not set
           # CONFIG_PACKAGE_luci-app-bcp38 is not set
           # CONFIG_PACKAGE_luci-app-bird1-ipv4 is not set
@@ -4198,7 +4198,7 @@ jobs:
           CONFIG_PACKAGE_luci-app-openvpn-server=m
           CONFIG_PACKAGE_luci-app-p910nd=m
           # CONFIG_PACKAGE_luci-app-pagekitec is not set
-          CONFIG_PACKAGE_luci-app-passwall=y
+          CONFIG_PACKAGE_luci-app-passwall=m
           
           #
           # Configuration
@@ -4255,7 +4255,7 @@ jobs:
           # CONFIG_PACKAGE_luci-app-ttyd is not set
           # CONFIG_PACKAGE_luci-app-udpxy is not set
           # CONFIG_PACKAGE_luci-app-uhttpd is not set
-          CONFIG_PACKAGE_luci-app-unblockmusic=y
+          CONFIG_PACKAGE_luci-app-unblockmusic=m
           CONFIG_UnblockNeteaseMusic_Go=y
           CONFIG_UnblockNeteaseMusic_NodeJS=y
           # CONFIG_PACKAGE_luci-app-unbound is not set
@@ -4294,7 +4294,7 @@ jobs:
           # CONFIG_PACKAGE_luci-proto-3g is not set
           # CONFIG_PACKAGE_luci-proto-bonding is not set
           # CONFIG_PACKAGE_luci-proto-ipip is not set
-          CONFIG_PACKAGE_luci-proto-ipv6=m
+          CONFIG_PACKAGE_luci-proto-ipv6=y
           # CONFIG_PACKAGE_luci-proto-ncm is not set
           CONFIG_PACKAGE_luci-proto-openconnect=m
           CONFIG_PACKAGE_luci-proto-ppp=y
@@ -4336,7 +4336,7 @@ jobs:
           CONFIG_PACKAGE_luci-i18n-aria2-zh-cn=m
           # CONFIG_PACKAGE_luci-i18n-aria2-zh-tw is not set
           CONFIG_PACKAGE_luci-i18n-arpbind-zh-cn=y
-          CONFIG_PACKAGE_luci-i18n-autoreboot-zh-cn=y
+          CONFIG_PACKAGE_luci-i18n-autoreboot-zh-cn=m
           # CONFIG_PACKAGE_luci-i18n-base-ca is not set
           # CONFIG_PACKAGE_luci-i18n-base-cs is not set
           # CONFIG_PACKAGE_luci-i18n-base-de is not set
@@ -4533,7 +4533,7 @@ jobs:
           # CONFIG_PACKAGE_luci-i18n-transmission-vi is not set
           CONFIG_PACKAGE_luci-i18n-transmission-zh-cn=m
           # CONFIG_PACKAGE_luci-i18n-transmission-zh-tw is not set
-          CONFIG_PACKAGE_luci-i18n-unblockmusic-zh-cn=y
+          CONFIG_PACKAGE_luci-i18n-unblockmusic-zh-cn=m
           # CONFIG_PACKAGE_luci-i18n-upnp-ca is not set
           # CONFIG_PACKAGE_luci-i18n-upnp-cs is not set
           # CONFIG_PACKAGE_luci-i18n-upnp-de is not set
@@ -5469,7 +5469,7 @@ jobs:
           # CONFIG_PACKAGE_apcupsd-cgi is not set
           # CONFIG_PACKAGE_apinger is not set
           # CONFIG_PACKAGE_arp-scan is not set
-          # CONFIG_PACKAGE_baidupcs-web is not set
+          CONFIG_PACKAGE_baidupcs-web=m
           # CONFIG_PACKAGE_banip is not set
           # CONFIG_PACKAGE_batctl-default is not set
           # CONFIG_PACKAGE_batctl-full is not set
