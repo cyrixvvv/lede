@@ -10,14 +10,16 @@
 name: OpenWrt-GDOCK
 
 on:
-  schedule:
+  #schedule:
     # 每周五自动编译
-    - cron: 0 15 * * 5
-  watch:
-    types: started
+  #  - cron: 0 15 * * 5
+  #watch:
+  #  types: started
   push:
     branches:
       - master
+    paths:
+      - '.config'
   release:
     types: [published]
 
