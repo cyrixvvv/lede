@@ -6841,8 +6841,8 @@ jobs:
         run: |
           cd lede
           echo -e "$(nproc) thread build."
-          make -j$(($(nproc) + 1)) V=s
-          # make -j1 V=s
+          # make -j$(($(nproc) + 1)) V=s
+          make -j1 V=s
           echo "======================="
           echo "Space usage:"
           echo "======================="
